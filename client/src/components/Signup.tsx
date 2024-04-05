@@ -3,11 +3,14 @@ import signupimg from '../assets/signin.png';
 import Dropdown from './Dropdown';
 import { GoEye } from "react-icons/go";
 import { IoEyeOff } from "react-icons/io5";
+import { signup } from '../api/api';
+import { Navigate } from 'react-router-dom';
+
 
 // type for the form data
 interface FormData {
-  firstName: string;
-  lastName: string;
+  firstname: string;
+  lastname: string;
   password: string;
   confirmPassword: string;
   contactMode: string;
@@ -15,9 +18,10 @@ interface FormData {
 }
 
 const SignUpForm: React.FC = () => {
+  
   const [formData, setFormData] = React.useState<FormData>({
-    firstName: '',
-    lastName: '',
+    firstname: '',
+    lastname: '',
     password: '',
     confirmPassword: '',
     contactMode: '',
@@ -42,10 +46,14 @@ const SignUpForm: React.FC = () => {
   };
 
   // Handle form submission
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData);
-    // Add form submission logic here
+    const results = await signup(formData);
+    if(results){
+      alert('success');
+    } else {
+      alert("failed");
+    }
   };
 
   return (
@@ -79,8 +87,8 @@ const SignUpForm: React.FC = () => {
             <input
               type="text"
               id="firstName"
-              name="firstName"
-              value={formData.firstName}
+              name="firstname"
+              value={formData.firstname}
               onChange={handleChange}
               className="w-full border py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               placeholder="First Name"
@@ -90,8 +98,8 @@ const SignUpForm: React.FC = () => {
             <input
               type="text"
               id="lastName"
-              name="lastName"
-              value={formData.lastName}
+              name="lastname"
+              value={formData.lastname}
               onChange={handleChange}
               className="w-full border py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               placeholder="Last Name"

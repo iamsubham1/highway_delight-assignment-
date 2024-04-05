@@ -5,7 +5,7 @@ import cors from 'cors';
 import authRoutes from './routes/auth.js'; 
 
 const app = express();
-const port = 5000;
+const port = 8080;
 const corsOptions = {
     origin: process.env.origin,
     methods: "GET,POST,PUT,PATCH,DELETE,HEAD",

@@ -10,7 +10,8 @@ const Dropdown: React.FC<DropdownProps> = ({ name, options, initialValue }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(initialValue);
 
-  const toggleDropdown = () => {
+  const toggleDropdown = (e:any) => {
+    e.preventDefault();
     setIsOpen(!isOpen);
   };
 
