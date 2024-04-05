@@ -1,16 +1,23 @@
 import express from 'express';
 import connectToMongo from './db.js';
-import authRoutes from './routes/auth.js'; // Assuming your authentication routes are defined in 'auth.js'
+import cors from 'cors';
+
+import authRoutes from './routes/auth.js'; 
 
 const app = express();
 const port = 5000;
+const corsOptions = {
+    origin: process.env.origin,
+    methods: "GET,POST,PUT,PATCH,DELETE,HEAD",
+    credentials: true
+};
 
+app.use(cors(corsOptions));
 const server = async () => {
     app.use(express.json());
 
     await connectToMongo();
 
-    // Assuming your authentication routes are defined in 'auth.js'
     app.use('/api/auth', authRoutes);
 
     app.get("/health", (req, res) => {
