@@ -11,6 +11,7 @@ interface FormData {
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
+  const [loggedIn ,isLoggedIn] = useState(false);
 
     const [formData, setFormData] = useState<FormData>({
         password: '',
@@ -37,6 +38,8 @@ const Login: React.FC = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
+          
+
             const response = await fetch('http://localhost:8080/api/auth/login', {
                 method: 'POST',
                 headers: {
@@ -45,10 +48,18 @@ const Login: React.FC = () => {
                 body: JSON.stringify(formData),
             });
             const data = await response.json();
+          
             if (!response.ok) {
                 throw new Error(data.msg || 'Failed to login');
             }
-            navigate('/home');
+            isLoggedIn(true);
+     
+
+            setTimeout(() => {
+                navigate('/home'); 
+            }, 1500);
+         
+     
             console.log('Login successful:', data);
         } catch (error:any) {
             console.error('Error logging in:', error.message);
@@ -56,6 +67,7 @@ const Login: React.FC = () => {
         }
     };
 
+  
     return (
         <div className="flex flex-col lg:flex-row">
             <div className="lg:w-1/2">
@@ -65,9 +77,11 @@ const Login: React.FC = () => {
                     className="object-cover w-full h-full"
                 />
             </div>
-
+          
             {/* Form */}
-            <div className="lg:w-1/2 p-8 flex justify-center items-center ">
+      
+            <div className="lg:w-1/2 p-8 flex flex-col justify-center items-center ">
+            {loggedIn ? <p className="text-green-600 text-sm mb-4 ml-12 font-semibold ">logged in</p> : error && <p className="text-red-500 text-sm mb-4 ml-12 font-semibold relative">{error}</p> }
                 <form
                     className="w-full max-w-lg px-8 py-6 border-[#ebebeb] border-2 rounded-xl filter h-[60vh] flex flex-col justify-center"
                     onSubmit={handleSubmit}
@@ -108,7 +122,7 @@ const Login: React.FC = () => {
                         </button>
                     </div>
 
-                    {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+                    
 
                     <div className="mb-4 flex flex-col gap-4">
                         <button

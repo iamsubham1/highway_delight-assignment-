@@ -5,11 +5,10 @@ import { useNavigate } from 'react-router-dom';
 const VerifyOtp = (email:any) => {
 
     const navigate = useNavigate();
-  const [otp, setOtp] = useState('');
-  const [error, setError] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+    const [otp, setOtp] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (e) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
     try {
@@ -23,22 +22,31 @@ const VerifyOtp = (email:any) => {
       });
       const data = await response.json();
       if (!response.ok) {
+        alert('incorrect OTP');
+        setIsLoading(false);
         throw new Error(data.msg || 'Failed to verify OTP');
+        
       }
       console.log(data);
-      setIsLoading(false);
+     
       navigate('/home');
 
     } catch (error:any) {
-      console.error('Error verifying OTP:', error.message);
-      setError(error.message);
-      setIsLoading(false);
+      console.error('internal server error', error.message);
+    
+      
     }
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setOtp(e.target.value);
   };
+  if (isLoading) {
+    return (
+        <div className="w-[100vw] h-[100vh] bg-white"><div className="spinner-border" role="status" id='spinner'>
+            <span className="visually-hidden"></span>
+        </div></div>)
+}
 
   return (
     <div className="flex justify-center items-center h-[100vh]">
@@ -66,7 +74,7 @@ const VerifyOtp = (email:any) => {
               {isLoading ? 'Verifying...' : 'Verify OTP'}
             </button>
           </div>
-          {error && <p className="text-red-500 text-sm">{error}</p>}
+          
         </form>
       </div>
     </div>
