@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import signupimg from '../assets/HD Assignment.png';
+import signupimg from '../assets/signin.png';
 import Dropdown from './Dropdown';
 import { GoEye } from "react-icons/go";
 import { IoEyeOff } from "react-icons/io5";
@@ -156,7 +156,7 @@ const SignUpForm: React.FC = () => {
           <div className="mb-4">
             <button
               type="submit"
-              className="w-full bg-[#3A244A] hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl focus:outline-none focus:shadow-outline"
+              className="w-full bg-[#3A244A] hover:bg-[#744992] text-white font-bold py-3 px-4 rounded-xl focus:outline-none focus:shadow-outline"
             >
               Sign Up
             </button>
