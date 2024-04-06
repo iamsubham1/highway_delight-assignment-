@@ -3,13 +3,14 @@ import connectToMongo from './db.js';
 import cors from 'cors';
 
 import authRoutes from './routes/auth.js'; 
+require('dotenv').config();
 
 const app = express();
 const port = 8080;
 
 
 const corsOptions = {
-    origin: process.env.origin || "https://authenticationtestassignment.netlify.app",
+    origin: process.env.origin ,
     methods: "GET,POST,PUT,PATCH,DELETE,HEAD",
     credentials: true
 };

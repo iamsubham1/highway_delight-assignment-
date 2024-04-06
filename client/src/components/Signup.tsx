@@ -138,7 +138,7 @@ const SignUpForm: React.FC = () => {
                   onClick={() => togglePasswordVisibility(0)}
                   className="absolute top-0 right-0 mr-3 mt-3"
                 >
-                  {showPassword[0] ? <IoEyeOff /> : <GoEye />}
+                  {showPassword[0] ? <GoEye /> :<IoEyeOff /> }
                 </button>
               </div>
               <div className="mb-4 relative">
@@ -156,7 +156,7 @@ const SignUpForm: React.FC = () => {
                   onClick={() => togglePasswordVisibility(1)}
                   className="absolute top-0 right-0 mr-3 mt-3"
                 >
-                  {showPassword[1] ? <IoEyeOff /> : <GoEye />}
+                  {showPassword[1] ? <GoEye /> :<IoEyeOff /> }
                 </button>
               </div>
               <div className="mb-4">

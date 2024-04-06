@@ -80,8 +80,8 @@ const Login: React.FC = () => {
           
             {/* Form */}
       
-            <div className="lg:w-1/2 p-8 flex flex-col justify-center items-center ">
-            {loggedIn ? <p className="text-green-600 text-sm mb-4 ml-12 font-semibold ">logged in</p> : error && <p className="text-red-500 text-sm mb-4 ml-12 font-semibold relative">{error}</p> }
+            <div className="lg:w-1/2 p-8 flex flex-col justify-center items-center text-center ">
+            {loggedIn ? <p className="text-green-600 text-sm mb-4 font-semibold ">logged in</p> : error && <p className="text-red-500 text-sm mb-4 font-semibold relative">{error}</p> }
                 <form
                     className="w-full max-w-lg px-8 py-6 border-[#ebebeb] border-2 rounded-xl filter h-[60vh] flex flex-col justify-center"
                     onSubmit={handleSubmit}
@@ -118,7 +118,7 @@ const Login: React.FC = () => {
                             onClick={togglePasswordVisibility}
                             className="absolute top-0 right-0 mr-3 mt-3"
                         >
-                            {showPassword ? <IoEyeOff /> : <GoEye />}
+                            {showPassword ? <GoEye /> :<IoEyeOff /> }
                         </button>
                     </div>
 

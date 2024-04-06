@@ -1,17 +1,19 @@
-import mongoose from "mongoose";
-const MONGODB_URI = "mongodb+srv://das1998lipun:Ou3w1IO9FvzBHEo3@cluster0.xbf2g4h.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+import mongoose, { ConnectOptions } from "mongoose";
+import dotenv from "dotenv";
 
-const connectToMongo = async()=>{
+dotenv.config();
 
+const MONGODB_URI: string = process.env.MONGODB_URI || "";
+
+const connectToMongo = async (): Promise<void> => {
     try {
+       
 
         await mongoose.connect(MONGODB_URI);
         console.log("Connected to MongoDB successfully");
-    
     } catch (error) {
-
         console.error('Error starting server:', error);
-        process.exit();
+        process.exit(1); // Exit with error code
     }
 }
 
