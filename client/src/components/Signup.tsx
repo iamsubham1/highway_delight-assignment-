@@ -54,18 +54,20 @@ const SignUpForm: React.FC = () => {
 
       const results = await signup(formData);
       if (results) {
-        alert('success');
-       
+        alert('Account created successfully. An OTP has been sent to your email.');
+        setIsLoading(false);
+        setShowOtp(true);
       } else {
-        alert("failed");
+        alert('Failed to create account. Please try again.');
+        setIsLoading(false);
       }
     } catch (error:any) {
       console.error('Error creating account:', error.message);
-    }finally{
+      alert('An unexpected error occurred. Please try again later.');
       setIsLoading(false);
-      setShowOtp(true);
     }
   };
+
   if (isLoading) {
     return (
         <div className="w-[100vw] h-[100vh] bg-white"><div className="spinner-border" role="status" id='spinner'>
