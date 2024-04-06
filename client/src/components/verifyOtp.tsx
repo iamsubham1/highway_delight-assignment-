@@ -13,7 +13,7 @@ const VerifyOtp = (email:any) => {
     setIsLoading(true);
     try {
         console.log(email);
-      const response = await fetch('http://localhost:8080/api/auth/verifyotp', {
+      const response = await fetch('https://highway-delight-assignment.onrender.com/api/auth/verifyotp', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

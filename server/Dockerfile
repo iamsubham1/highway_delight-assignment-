@@ -16,8 +16,9 @@ RUN npm install
 
 # Copy the rest of the application files
 COPY . .
-# Rebuild bcrypt
-# Expose port
+
+# Build the TypeScript code to generate the /dist directory
+RUN npm run build
 
 ENTRYPOINT ["node", "dist/index.js"]
 
