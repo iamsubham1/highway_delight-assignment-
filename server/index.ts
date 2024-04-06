@@ -6,11 +6,14 @@ import authRoutes from './routes/auth.js';
 
 const app = express();
 const port = 8080;
+
+
 const corsOptions = {
-    origin: process.env.origin,
+    origin: process.env.origin || "https://authenticationtestassignment.netlify.app",
     methods: "GET,POST,PUT,PATCH,DELETE,HEAD",
     credentials: true
 };
+
 
 app.use(cors(corsOptions));
 const server = async () => {
